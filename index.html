@@ -1,122 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Memory Hub</title>
-    <style>
-        :root {
-            --primary: #4a5568;
-            --bg: #f7fafc;
-            --card-bg: #ffffff;
-            --text: #2d3748;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 20px;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-        }
-        header h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.5rem;
-            color: #1a202c;
-        }
-        header p {
-            font-size: 1.1rem;
-            color: #718096;
-            margin: 0;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        .card-emoji {
-            height: 140px;
-            background: #edf2f7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-        }
-        .card-content {
-            padding: 20px;
-        }
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin: 0 0 8px 0;
-            color: #2d3748;
-        }
-        .card-desc {
-            font-size: 0.95rem;
-            color: #718096;
-            margin: 0;
-            line-height: 1.4;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Memories | Family Photo Gallery</title>
+  <meta name="description" content="A private family collection of photographs, memories, and moments shared together.">
+  <meta name="theme-color" content="#0D0D0D">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Our Memories | Family Photo Gallery">
+  <meta property="og:description" content="A private family collection of photographs, memories, and moments shared together.">
+  <meta property="og:image" content="assets/hero.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Custom Desktop Cursor -->
+  <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
+  <div class="custom-cursor-follower" id="cursorFollower" aria-hidden="true"></div>
 
-    <header>
-        <h1>Happy Birthday! 🎈</h1>
-        <p>A collection of our favorite moments and memories over the years.</p>
-    </header>
+  <!-- SVG Noise Overlay for Texture -->
+  <div class="bg-noise" aria-hidden="true"></div>
 
-    <div class="grid">
+  <!-- Navigation -->
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Main Navigation">
+      <a href="#home" class="nav__logo">
+        <span class="nav__logo-icon" aria-hidden="true">❖</span>
+        <span class="nav__logo-text">Our Memories</span>
+      </a>
 
-        <!-- ALBUM CARD 1 -->
-        <a href="https://photos.app.goo.gl/SJCS4D3gQS1LqqxH7" target="_blank" class="card">
-            <div class="card-emoji">✈️</div>
-            <div class="card-content">
-                <div class="card-title">Our Road Trips</div>
-                <p class="card-desc">All the crazy adventures, wrong turns, and beautiful destinations.</p>
-            </div>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="navMenu">
+        <span class="nav__toggle-line"></span>
+        <span class="nav__toggle-line"></span>
+      </button>
+
+      <div class="nav__menu" id="navMenu">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
+          <li class="nav__item"><a href="#albums" class="nav__link">Albums</a></li>
+          <li class="nav__item"><a href="#mosaic" class="nav__link">Gallery</a></li>
+          <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+        </ul>
+        <a href="https://photos.google.com/" target="_blank" rel="noopener noreferrer" class="btn btn--secondary nav__btn js-google-photos-main">
+          View Photos <span class="btn__icon">↗</span>
         </a>
+      </div>
+    </nav>
+  </header>
 
-        <!-- ALBUM CARD 2 -->
-        <a href="PASTE_YOUR_GOOGLE_PHOTOS_ALBUM_LINK_2_HERE" target="_blank" class="card">
-            <div class="card-emoji">🎂</div>
-            <div class="card-content">
-                <div class="card-title">Birthday Celebrations</div>
-                <p class="card-desc">Looking back at all the cake, laughs, and parties.</p>
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero__bg-wrapper">
+        <img 
+          src="assets/hero.jpg" 
+          alt="Family together during sunset" 
+          class="hero__bg-img"
+          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=2000&auto=format&fit=crop';"
+        >
+        <div class="hero__overlay"></div>
+      </div>
+
+      <div class="hero__content container reveal">
+        <span class="hero__subtitle">OUR FAMILY • OUR STORY</span>
+        <h1 class="hero__title">Every picture tells a story.</h1>
+        <p class="hero__description">
+          A private collection of the moments, people, places, and timeless memories that make our family special.
+        </p>
+
+        <div class="hero__actions">
+          <a href="https://photos.google.com/" target="_blank" rel="noopener noreferrer" class="btn btn--primary js-google-photos-main">
+            View Family Photos <span class="btn__icon">→</span>
+          </a>
+          <a href="#albums" class="btn btn--outline">
+            Explore Memories <span class="btn__icon">↓</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="#albums" class="hero__scroll" aria-label="Scroll to featured albums">
+        <span class="hero__scroll-text">Scroll</span>
+        <span class="hero__scroll-line"></span>
+      </a>
+    </section>
+
+    <!-- Featured Albums Section -->
+    <section class="section albums" id="albums">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">COLLECTION</span>
+          <h2 class="section__title">Featured Memories</h2>
+          <p class="section__subtitle">A few curated chapters from our family story.</p>
+        </div>
+
+        <div class="albums__grid">
+          <!-- Album Card 1 -->
+          <article class="album-card reveal" data-album-key="family">
+            <div class="album-card__image-wrapper">
+              <img 
+                src="assets/album-1.jpg" 
+                alt="Family Moments Album" 
+                class="album-card__img" 
+                loading="lazy" 
+                decoding="async"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?q=80&w=800&auto=format&fit=crop';"
+              >
+              <div class="album-card__overlay"></div>
             </div>
-        </a>
-
-        <!-- ALBUM CARD 3 -->
-        <a href="PASTE_YOUR_GOOGLE_PHOTOS_ALBUM_LINK_3_HERE" target="_blank" class="card">
-            <div class="card-emoji">🐾</div>
-            <div class="card-content">
-                <div class="card-title">Funny Moments & Videos</div>
-                <p class="card-desc">A gallery of candid smiles and blooper reels.</p>
+            <div class="album-card__content">
+              <span class="album-card__tag">ALBUM</span>
+              <h3 class="album-card__title">Family Moments</h3>
+              <p class="album-card__desc">All the little moments that became unforgettable memories.</p>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="album-card__link js-album-link">
+                View Album <span class="btn__icon">→</span>
+              </a>
             </div>
-        </a>
+          </article>
 
+          <!-- Album Card 2 -->
+          <article class="album-card reveal" data-album-key="celebrations">
+            <div class="album-card__image-wrapper">
+              <img 
+                src="assets/album-2.jpg" 
+                alt="Celebrations Album" 
+                class="album-card__img" 
+                loading="lazy" 
+                decoding="async"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=800&auto=format&fit=crop';"
+              >
+              <div class="album-card__overlay"></div>
+            </div>
+            <div class="album-card__content">
+              <span class="album-card__tag">ALBUM</span>
+              <h3 class="album-card__title">Celebrations</h3>
+              <p class="album-card__desc">Birthdays, festivals, weddings, and everything worth celebrating.</p>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="album-card__link js-album-link">
+                View Album <span class="btn__icon">→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Album Card 3 -->
+          <article class="album-card reveal" data-album-key="travel">
+            <div class="album-card__image-wrapper">
+              <img 
+                src="assets/album-3.jpg" 
+                alt="Travel Diaries Album" 
+                class="album-card__img" 
+                loading="lazy" 
+                decoding="async"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=800&auto=format&fit=crop';"
+              >
+              <div class="album-card__overlay"></div>
+            </div>
+            <div class="album-card__content">
+              <span class="album-card__tag">ALBUM</span>
+              <h3 class="album-card__title">Travel Diaries</h3>
+              <p class="album-card__desc">Places we've been and memories we brought back home.</p>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="album-card__link js-album-link">
+                View Album <span class="btn__icon">→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Album Card 4 -->
+          <article class="album-card reveal" data-album-key="childhood">
+            <div class="album-card__image-wrapper">
+              <img 
+                src="assets/album-4.jpg" 
+                alt="Childhood Album" 
+                class="album-card__img" 
+                loading="lazy" 
+                decoding="async"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1476703993599-0035a21b17a9?q=80&w=800&auto=format&fit=crop';"
+              >
+              <div class="album-card__overlay"></div>
+            </div>
+            <div class="album-card__content">
+              <span class="album-card__tag">ALBUM</span>
+              <h3 class="album-card__title">Childhood</h3>
+              <p class="album-card__desc">Old photographs, younger faces, and timeless memories.</p>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="album-card__link js-album-link">
+                View Album <span class="btn__icon">→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Album Card 5 -->
+          <article class="album-card reveal" data-album-key="gatherings">
+            <div class="album-card__image-wrapper">
+              <img 
+                src="assets/album-5.jpg" 
+                alt="Family Gatherings Album" 
+                class="album-card__img" 
+                loading="lazy" 
+                decoding="async"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop';"
+              >
+              <div class="album-card__overlay"></div>
+            </div>
+            <div class="album-card__content">
+              <span class="album-card__tag">ALBUM</span>
+              <h3 class="album-card__title">Family Gatherings</h3>
+              <p class="album-card__desc">Everyone together under one roof, sharing smiles and laughter.</p>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="album-card__link js-album-link">
+                View Album <span class="btn__icon">→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Album Card 6 -->
+          <article class="album-card reveal" data-album-key="special">
+            <div class="album-card__image-wrapper">
+              <img 
+                src="assets/album-6.jpg" 
+                alt="Special Moments Album" 
+                class="album-card__img" 
+                loading="lazy" 
+                decoding="async"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=800&auto=format&fit=crop';"
+              >
+              <div class="album-card__overlay"></div>
+            </div>
+            <div class="album-card__content">
+              <span class="album-card__tag">ALBUM</span>
+              <h3 class="album-card__title">Special Moments</h3>
+              <p class="album-card__desc">The milestone events that deserve to be remembered forever.</p>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="album-card__link js-album-link">
+                View Album <span class="btn__icon">→</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Photo Mosaic Section -->
+    <section class="section mosaic" id="mosaic">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">GALLERY</span>
+          <h2 class="section__title">Fragments of Our Story</h2>
+          <p class="section__subtitle">A visual magazine of laughter, travels, and quiet moments.</p>
+        </div>
+
+        <div class="mosaic__grid">
+          <!-- Item 1: Large Wide -->
+          <div class="mosaic__item mosaic__item--wide reveal">
+            <img src="assets/photo-1.jpg" alt="Family memory" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop';">
+            <div class="mosaic__overlay">
+              <span class="mosaic__text">View Memories ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 2: Normal -->
+          <div class="mosaic__item reveal">
+            <img src="assets/photo-2.jpg" alt="Family memory" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop';">
+            <div class="mosaic__overlay">
+              <span class="mosaic__text">View Memories ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 3: Tall -->
+          <div class="mosaic__item mosaic__item--tall reveal">
+            <img src="assets/photo-3.jpg" alt="Family memory" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=800&auto=format&fit=crop';">
+            <div class="mosaic__overlay">
+              <span class="mosaic__text">View Memories ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 4: Normal -->
+          <div class="mosaic__item reveal">
+            <img src="assets/photo-4.jpg" alt="Family memory" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop';">
+            <div class="mosaic__overlay">
+              <span class="mosaic__text">View Memories ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 5: Large Square (2x2) -->
+          <div class="mosaic__item mosaic__item--large reveal">
+            <img src="assets/photo-5.jpg" alt="Family memory" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=800&auto=format&fit=crop';">
+            <div class="mosaic__overlay">
+              <span class="mosaic__text">View Memories ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 6: Normal -->
+          <div class="mosaic__item reveal">
+            <img src="assets/photo-6.jpg" alt="Family memory" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop';">
+            <div class="mosaic__overlay">
+              <span class="mosaic__text">View Memories ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 7: Tall -->
+          <div class="mosaic__item mosaic__item--tall reveal">
+            <img src="assets/photo-7.jpg" alt="Family memory" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop';">
+            <div class="mosaic__overlay">
+              <span class="mosaic__text">View Memories ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 8: Wide -->
+          <div class="mosaic__item mosaic__item--wide reveal">
+            <img src="assets/photo-8.jpg" alt="Family memory" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=800&auto=format&fit=crop';">
+            <div class="mosaic__overlay">
+              <span class="mosaic__text">View Memories ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 9: Normal -->
+          <div class="mosaic__item reveal">
+            <img src="assets/photo-9.jpg" alt="Family memory" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=800&auto=format&fit=crop';">
+            <div class="mosaic__overlay">
+              <span class="mosaic__text">View Memories ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 10: Normal -->
+          <div class="mosaic__item reveal">
+            <img src="assets/photo-10.jpg" alt="Family memory" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop';">
+            <div class="mosaic__overlay">
+              <span class="mosaic__text">View Memories ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 11: Tall -->
+          <div class="mosaic__item mosaic__item--tall reveal">
+            <img src="assets/photo-11.jpg" alt="Family memory" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop';">
+            <div class="mosaic__overlay">
+              <span class="mosaic__text">View Memories ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 12: Normal -->
+          <div class="mosaic__item reveal">
+            <img src="assets/photo-12.jpg" alt="Family memory" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop';">
+            <div class="mosaic__overlay">
+              <span class="mosaic__text">View Memories ↗</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Memory Quote Section -->
+    <section class="quote-section">
+      <div class="quote-section__bg" aria-hidden="true"></div>
+      <div class="container container--narrow reveal">
+        <span class="quote-section__symbol">“</span>
+        <blockquote class="quote-section__text">
+          The best thing about memories is making them.
+        </blockquote>
+        <div class="quote-section__line"></div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+      <div class="container">
+        <div class="about__wrapper reveal">
+          <span class="section__tag">PURPOSE</span>
+          <h2 class="section__title">Why We Keep These Memories</h2>
+          <p class="about__lead">
+            Life moves quickly. Photographs give us a reason to pause, look back, and remember the people, places, and moments that shaped us.
+          </p>
+
+          <div class="about__features">
+            <div class="about__feature">
+              <div class="about__icon" aria-hidden="true">📸</div>
+              <h3 class="about__feature-title">Memories</h3>
+              <p class="about__feature-desc">Every photograph holds a story waiting to be remembered.</p>
+            </div>
+
+            <div class="about__feature">
+              <div class="about__icon" aria-hidden="true">❤️</div>
+              <h3 class="about__feature-title">Family</h3>
+              <p class="about__feature-desc">Different moments, one family, connected across time.</p>
+            </div>
+
+            <div class="about__feature">
+              <div class="about__icon" aria-hidden="true">✨</div>
+              <h3 class="about__feature-title">Forever</h3>
+              <p class="about__feature-desc">Some moments deserve to stay with us for a lifetime.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Call to Action -->
+    <section class="cta-section">
+      <div class="container container--narrow reveal text-center">
+        <span class="section__tag">EXPLORE</span>
+        <h2 class="cta-section__title">Ready to revisit the memories?</h2>
+        <p class="cta-section__text">
+          Open our full family photo collection and take a walk through the moments we've shared.
+        </p>
+        <a href="https://photos.google.com/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--lg js-google-photos-main">
+          Open Google Photos <span class="btn__icon">↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__content">
+        <div class="footer__brand">
+          <a href="#home" class="footer__logo">
+            <span class="footer__logo-icon">❖</span> Our Memories
+          </a>
+          <p class="footer__tagline">Made with ❤️ for the family.</p>
+        </div>
+
+        <div class="footer__right">
+          <p class="footer__privacy">
+            Privacy • Family Gallery
+          </p>
+          <p class="footer__copyright">
+            © 2026 Our Family. All rights reserved.
+          </p>
+        </div>
+      </div>
     </div>
+  </footer>
 
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    ↑
+  </button>
+
+  <script src="script.js"></script>
 </body>
 </html>
