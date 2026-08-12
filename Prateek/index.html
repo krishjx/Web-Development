@@ -1,37 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Prateek's Family Memories</title>
-
     <style>
-
-        /* =========================================================
-           ORIGINAL THEME — KEPT THE SAME
-        ========================================================= */
-
+        /* Base Styles & Typography */
         :root {
-            --bg-color: #FAF9F6;
-            --text-main: #2C3E50;
+            --bg-color: #FAF9F6; /* Soft elegant cream */
+            --text-main: #2C3E50; /* Dark slate for readability */
             --text-muted: #7F8C8D;
-            --accent-color: #C5A880;
+            --accent-color: #C5A880; /* Muted gold/sand */
             --card-bg: #FFFFFF;
-            --line-color: #EAEAEA;
         }
-
-
-        * {
-            box-sizing: border-box;
-        }
-
-
-        html {
-            scroll-behavior: smooth;
-        }
-
 
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -42,902 +23,459 @@
             line-height: 1.6;
         }
 
-
         .container {
-            max-width: 620px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
-
-        /* =========================================================
-           HEADER
-        ========================================================= */
-
+        /* Header Styles */
         header {
             text-align: center;
-            margin-bottom: 55px;
+            margin-bottom: 40px;
         }
-
-
-        .eyebrow {
-            color: var(--accent-color);
-            font-size: 0.75rem;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
 
         h1 {
             font-weight: 400;
-            margin: 0 0 7px;
-            font-size: 2.05rem;
+            margin-bottom: 5px;
+            font-size: 2rem;
             color: var(--text-main);
         }
-
 
         .subtitle {
             color: var(--text-muted);
-            font-size: 1.05rem;
-            margin: 0;
+            font-size: 1.1rem;
+            margin-top: 0;
         }
 
+        /* Highlight & Main Video Cards */
+        .featured-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
 
-        /* =========================================================
-           COMPLETE COLLECTION
-        ========================================================= */
-
-        .complete-memory {
+        .featured-card {
             background-color: var(--card-bg);
-            padding: 28px 25px;
-            border-radius: 14px;
+            padding: 25px;
+            border-radius: 12px;
             text-align: center;
-
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.035);
-
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
             border: 1px solid #F0F0F0;
-
-            margin-bottom: 65px;
         }
 
-
-        .complete-memory .symbol {
-            font-size: 1.35rem;
-            margin-bottom: 5px;
-        }
-
-
-        .complete-memory h2 {
-            font-size: 1.25rem;
+        .featured-card h3 {
+            margin: 0 0 15px 0;
             font-weight: 500;
-            margin: 0 0 5px;
         }
 
-
-        .complete-memory p {
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            margin: 0 auto 18px;
-            max-width: 440px;
-        }
-
-
-        .main-button {
+        .btn-primary {
             display: inline-block;
-
             background-color: var(--accent-color);
             color: white;
-
-            padding: 12px 27px;
-
+            padding: 12px 28px;
             border-radius: 25px;
-
             text-decoration: none;
-
             font-weight: 500;
-
-            transition:
-                transform 0.2s,
-                opacity 0.2s,
-                box-shadow 0.2s;
+            transition: opacity 0.2s;
         }
 
-
-        .main-button:hover {
+        .btn-primary:hover {
             opacity: 0.9;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 14px rgba(197, 168, 128, 0.25);
         }
 
-
-        /* =========================================================
-           FAMILY STORY INTRO
-        ========================================================= */
-
-        .story-intro {
+        /* Timeline Styles */
+        .timeline-title {
             text-align: center;
-            margin-bottom: 55px;
-        }
-
-
-        .story-heart {
-            color: var(--accent-color);
-            font-size: 1.5rem;
-            margin-bottom: 7px;
-        }
-
-
-        .story-intro p {
+            font-weight: 400;
             color: var(--text-muted);
-            font-size: 0.93rem;
-            max-width: 470px;
-            margin: 0 auto;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #EAEAEA;
+            padding-bottom: 10px;
         }
 
+        .timeline {
+            border-left: 2px solid #EAEAEA;
+            padding-left: 30px;
+            margin-left: 15px;
+        }
 
-        /* =========================================================
-           MAIN FAMILY TIMELINE
-        ========================================================= */
-
-        .story {
+        .event {
             position: relative;
-            margin-left: 22px;
-            padding-left: 32px;
-        }
-
-
-        /*
-            The single line running through the entire family story.
-            This is what makes it feel like ONE continuous journey.
-        */
-
-        .story::before {
-            content: '';
-
-            position: absolute;
-
-            left: 0;
-            top: 0;
-            bottom: 0;
-
-            width: 2px;
-
-            background-color: var(--line-color);
-        }
-
-
-        /* =========================================================
-           YEAR MARKER
-        ========================================================= */
-
-        .year {
-            position: relative;
-
             margin-bottom: 35px;
         }
 
-
-        .year::before {
+        /* Timeline Dots */
+        .event::before {
             content: '';
-
             position: absolute;
-
-            left: -40px;
-            top: 3px;
-
-            width: 14px;
-            height: 14px;
-
-            background-color: var(--accent-color);
-
-            border-radius: 50%;
-
-            border: 5px solid var(--bg-color);
-
-            z-index: 2;
-        }
-
-
-        .year-label {
-            color: var(--accent-color);
-
-            font-size: 0.8rem;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 2px;
-        }
-
-
-        .year-title {
-            font-size: 1.65rem;
-
-            font-weight: 400;
-
-            margin: 0 0 5px;
-        }
-
-
-        .year-story {
-            color: var(--text-muted);
-
-            font-size: 0.9rem;
-
-            margin: 0 0 28px;
-
-            max-width: 480px;
-        }
-
-
-        /* =========================================================
-           MEMORY EVENT
-        ========================================================= */
-
-        .memory {
-            position: relative;
-
-            margin-bottom: 28px;
-        }
-
-
-        .memory::before {
-            content: '';
-
-            position: absolute;
-
             left: -37px;
-            top: 20px;
-
-            width: 9px;
-            height: 9px;
-
+            top: 5px;
+            width: 12px;
+            height: 12px;
             background-color: var(--accent-color);
-
             border-radius: 50%;
-
             border: 4px solid var(--bg-color);
         }
 
-
-        .memory-card {
-            background-color: var(--card-bg);
-
-            padding: 19px;
-
-            border-radius: 11px;
-
-            border: 1px solid #F0F0F0;
-
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.025);
-
-            transition:
-                transform 0.2s,
-                box-shadow 0.2s;
-        }
-
-
-        .memory-card:hover {
-            transform: translateY(-2px);
-
-            box-shadow: 0 6px 17px rgba(0, 0, 0, 0.055);
-        }
-
-
-        .memory-title {
-            margin: 0 0 4px;
-
-            font-size: 1.15rem;
-
+        .event h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
             font-weight: 500;
         }
 
-
-        .memory-description {
-            color: var(--text-muted);
-
-            font-size: 0.85rem;
-
-            margin: 0 0 13px;
-        }
-
-
-        /* =========================================================
-           ALBUM BUTTON
-        ========================================================= */
-
+        /* Album Links */
         .album-link {
             display: inline-flex;
-
             align-items: center;
-
             background-color: var(--card-bg);
-
-            padding: 10px 16px;
-
+            padding: 12px 20px;
             border-radius: 8px;
-
             text-decoration: none;
-
             color: var(--text-main);
-
-            border: 1px solid #EEEEEE;
-
-            font-size: 0.88rem;
-
-            transition:
-                transform 0.2s,
-                box-shadow 0.2s;
+            border: 1px solid #F0F0F0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-
-        .album-link:hover {
+        .album-link:hover, .album-link:active {
             transform: translateY(-2px);
-
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
-
 
         .icon {
-            margin-right: 9px;
-
-            font-size: 1.1rem;
+            margin-right: 10px;
+            font-size: 1.2rem;
         }
 
-
-        /* =========================================================
-           BIG MOMENT
-           Wedding / Baby arrival etc.
-        ========================================================= */
-
-        .big-moment {
-            background-color: var(--card-bg);
-
-            border: 1px solid #EFEFEF;
-
-            border-radius: 13px;
-
-            padding: 23px;
-
-            margin: 32px 0;
-
-            text-align: center;
-
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-        }
-
-
-        .big-moment-symbol {
-            font-size: 1.55rem;
-
-            margin-bottom: 4px;
-        }
-
-
-        .big-moment h3 {
-            font-weight: 500;
-
-            font-size: 1.25rem;
-
-            margin: 0 0 5px;
-        }
-
-
-        .big-moment p {
-            color: var(--text-muted);
-
-            font-size: 0.88rem;
-
-            margin: 0 auto 16px;
-
-            max-width: 430px;
-        }
-
-
-        /* =========================================================
-           SPECIAL TRANSITION
-           Between Wedding and Baby
-        ========================================================= */
-
-        .story-transition {
-            text-align: center;
-
-            margin: 55px 0;
-
-            position: relative;
-        }
-
-
-        .story-transition::before,
-        .story-transition::after {
-            content: '';
-
-            display: inline-block;
-
-            width: 65px;
-
-            height: 1px;
-
-            background-color: var(--line-color);
-
-            vertical-align: middle;
-
-            margin: 0 13px;
-        }
-
-
-        .story-transition span {
-            color: var(--accent-color);
-
-            font-size: 1.15rem;
-        }
-
-
-        /* =========================================================
-           CONTINUING STORY
-        ========================================================= */
-
-        .future {
-            text-align: center;
-
-            margin: 60px 0 55px;
-
-            color: var(--text-muted);
-        }
-
-
-        .future-symbol {
-            color: var(--accent-color);
-
-            font-size: 1.3rem;
-
-            margin-bottom: 7px;
-        }
-
-
-        .future h3 {
-            font-weight: 400;
-
-            color: var(--text-main);
-
-            margin: 0 0 4px;
-
-            font-size: 1.1rem;
-        }
-
-
-        .future p {
-            font-size: 0.85rem;
-
-            margin: 0;
-        }
-
-
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
+        /* Footer */
         footer {
             text-align: center;
-
-            margin-top: 40px;
-
+            margin-top: 50px;
             color: var(--text-muted);
-
-            font-size: 0.88rem;
-
-            padding-bottom: 20px;
+            font-size: 0.9rem;
         }
 
-
-        .footer-line {
-            width: 45px;
-
-            height: 1px;
-
-            background-color: var(--accent-color);
-
-            margin: 0 auto 14px;
+        /* ===== Family Timeline Navigation — Scrapbook Stamps (new) ===== */
+        body.phase-birthday {
+            --accent-color: #3E7C91; /* Deep teal for the birthday phase */
         }
 
-
-        /* =========================================================
-           MOBILE
-        ========================================================= */
-
-        @media (max-width: 500px) {
-
-            body {
-                padding: 30px 15px;
-            }
-
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-
-            .story {
-                margin-left: 14px;
-
-                padding-left: 27px;
-            }
-
-
-            .year::before {
-                left: -35px;
-            }
-
-
-            .memory::before {
-                left: -32px;
-            }
-
-
-            .year-title {
-                font-size: 1.5rem;
-            }
-
-
-            .complete-memory {
-                padding: 24px 18px;
-            }
-
+        body.phase-soon {
+            --accent-color: #B98D6F; /* Warm terracotta for the "coming soon" phase */
         }
 
+        .eyebrow {
+            text-align: center;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin: 0 0 22px 0;
+        }
+
+        .timeline-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin: 0 0 55px 0;
+            padding-top: 16px;
+        }
+
+        .year-node {
+            position: relative;
+            background: var(--card-bg);
+            border: 3px dashed #D8CFC0;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding: 16px 14px 12px;
+            flex: 0 1 120px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .year-node::before {
+            content: '';
+            position: absolute;
+            top: -9px;
+            left: 50%;
+            width: 36px;
+            height: 15px;
+            background: rgba(197, 168, 128, 0.4);
+            transform: translateX(-50%) rotate(-6deg);
+            border-radius: 2px;
+        }
+
+        .year-node:nth-of-type(1) { transform: rotate(-4deg); }
+        .year-node:nth-of-type(2) { transform: rotate(3deg); }
+        .year-node:nth-of-type(3) { transform: rotate(-3deg); }
+
+        .year-node.soon {
+            opacity: 0.78;
+        }
+
+        .node-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .node-year {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 0.82rem;
+            color: #B7BEC2;
+            transition: color 0.3s ease;
+        }
+
+        .node-label {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            text-align: center;
+            line-height: 1.25;
+            transition: color 0.3s ease;
+        }
+
+        .year-node.active {
+            transform: rotate(0deg) translateY(-5px) scale(1.05);
+            border-color: var(--accent-color);
+            border-style: solid;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.10);
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .year-node.active .node-year {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .year-node.active .node-label {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .year-node:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 4px;
+        }
+
+        .phase {
+            display: none;
+        }
+
+        .phase.active {
+            display: block;
+            animation: fadeIn 0.45s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .phase.active {
+                animation: none;
+            }
+        }
+
+        /* Coming soon phase */
+        .soon-card {
+            border: 2px dashed #DCD5C6;
+            background: repeating-linear-gradient(
+                135deg,
+                #FBFAF7,
+                #FBFAF7 10px,
+                #F7F4EC 10px,
+                #F7F4EC 20px
+            );
+            border-radius: 14px;
+            padding: 40px 25px;
+            text-align: center;
+        }
+
+        .soon-card .soon-icon {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .soon-card h3 {
+            margin: 0 0 8px 0;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .soon-card p {
+            margin: 0 auto;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            max-width: 380px;
+        }
+
+        @media (max-width: 420px) {
+            .year-node { flex: 0 1 96px; padding: 12px 8px 10px; }
+            .node-label { font-size: 0.68rem; }
+        }
     </style>
 </head>
+<body class="phase-wedding">
 
+    <div class="container">
+        <p class="eyebrow">Our Family Timeline</p>
 
-<body>
+        <!-- Year Timeline Navigation: Scrapbook Stamps -->
+        <nav class="timeline-nav" aria-label="Family timeline">
+            <button class="year-node active" data-phase="wedding" type="button">
+                <span class="node-icon">💍</span>
+                <span class="node-year">2023</span>
+                <span class="node-label">Wedding</span>
+            </button>
+            <button class="year-node" data-phase="birthday" type="button">
+                <span class="node-icon">🎂</span>
+                <span class="node-year">2026</span>
+                <span class="node-label">Satvik's 1st Birthday</span>
+            </button>
+            <button class="year-node soon" data-phase="soon" type="button">
+                <span class="node-icon">📌</span>
+                <span class="node-year">Next Up</span>
+                <span class="node-label">Coming Soon</span>
+            </button>
+        </nav>
 
+        <!-- ===== WEDDING PHASE ===== -->
+        <section id="phase-wedding" class="phase active">
+            <!-- Header Section -->
+            <header>
+                <h1>Prateek's Wedding</h1>
+                <p class="subtitle">Grateful for these family highlights! ✨ Relive the love.</p>
+            </header>
 
-<div class="container">
-
-
-    <!-- =========================================================
-         HEADER
-    ========================================================= -->
-
-    <header>
-
-        <div class="eyebrow">
-            A Family Memory
-        </div>
-
-        <h1>
-            Prateek's Family Memories
-        </h1>
-
-        <p class="subtitle">
-            Grateful for these beautiful moments. ✨
-        </p>
-
-    </header>
-
-
-
-    <!-- =========================================================
-         ONE LINK — COMPLETE COLLECTION
-    ========================================================= -->
-
-    <section class="complete-memory">
-
-        <div class="symbol">
-            ♡
-        </div>
-
-        <h2>
-            The Complete Memory Collection
-        </h2>
-
-        <p>
-            Photos and videos from the celebrations,
-            the beautiful moments and everything worth remembering.
-        </p>
-
-        <!--
-            YOUR NEW GOOGLE PHOTOS LINK
-        -->
-
-        <a
-            href="https://photos.app.goo.gl/SJCS4D3gQS1LqqxH7"
-            class="main-button"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            View All Memories
-        </a>
-
-    </section>
-
-
-
-    <!-- =========================================================
-         INTRO
-    ========================================================= -->
-
-    <section class="story-intro">
-
-        <div class="story-heart">
-            ♡
-        </div>
-
-        <p>
-            Every family has a story.
-            This one began with two people,
-            grew into two families,
-            and became even more beautiful with a little new arrival.
-        </p>
-
-    </section>
-
-
-
-    <!-- =========================================================
-         CONTINUOUS FAMILY STORY
-    ========================================================= -->
-
-    <main class="story">
-
-
-
-        <!-- =====================================================
-             2025
-        ===================================================== -->
-
-        <section class="year">
-
-            <div class="year-label">
-                The Beginning
+            <!-- Featured / Main Videos -->
+            <div class="featured-section">
+                <div class="featured-card">
+                    <h3>Family Highlights ✨</h3>
+                    <a href="https://photos.app.goo.gl/ojq69Bw3Cnpxdkjg8" class="btn-primary" target="_blank" rel="noopener noreferrer">View Highlights</a>
+                </div>
+                
+                <div class="featured-card">
+                    <h3>Sangeet, Haldi, & Wedding Videos 🎬</h3>
+                    <p style="margin-top: -5px; margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted);">The complete cinematic collection</p>
+                    <a href="https://photos.app.goo.gl/Bqp8tMRMVxi5NUzr5" class="btn-primary" target="_blank" rel="noopener noreferrer">Watch Videos</a>
+                </div>
             </div>
 
-            <h2 class="year-title">
-                2025
-            </h2>
-
-            <p class="year-story">
-                The year when a beautiful new journey began —
-                bringing two hearts and two families together.
-            </p>
-
-
-
-            <!-- MEHNDI -->
-
-            <div class="memory">
-
-                <div class="memory-card">
-
-                    <h3 class="memory-title">
-                        Mehndi 🌿
-                    </h3>
-
-                    <p class="memory-description">
-                        The celebrations began with colors,
-                        laughter and family togetherness.
-                    </p>
-
-                    <a
-                        href="https://photos.app.goo.gl/3b8WZDBsAbMZhGyM6"
-                        class="album-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <span class="icon">🌿</span>
-                        Open Album
+            <!-- Chronological Timeline Section -->
+            <h2 class="timeline-title">Event Timeline</h2>
+            
+            <div class="timeline">
+                <!-- Event 1 -->
+                <div class="event">
+                    <h3>Mehndi</h3>
+                    <a href="https://photos.app.goo.gl/3b8WZDBsAbMZhGyM6" class="album-link" target="_blank" rel="noopener noreferrer">
+                        <span class="icon">🌿</span> Open Album
                     </a>
-
                 </div>
 
-            </div>
-
-
-
-            <!-- HALDI -->
-
-            <div class="memory">
-
-                <div class="memory-card">
-
-                    <h3 class="memory-title">
-                        Haldi 💛
-                    </h3>
-
-                    <p class="memory-description">
-                        Yellow hues, smiles and unforgettable
-                        family moments.
-                    </p>
-
-                    <a
-                        href="https://photos.app.goo.gl/AmNoTDMTrvie1nB1A"
-                        class="album-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <span class="icon">💛</span>
-                        Open Album
+                <!-- Event 2 -->
+                <div class="event">
+                    <h3>Haldi</h3>
+                    <a href="https://photos.app.goo.gl/AmNoTDMTrvie1nB1A" class="album-link" target="_blank" rel="noopener noreferrer">
+                        <span class="icon">💛</span> Open Album
                     </a>
-
                 </div>
 
-            </div>
-
-
-
-            <!-- SANGEET -->
-
-            <div class="memory">
-
-                <div class="memory-card">
-
-                    <h3 class="memory-title">
-                        Sangeet 🪈
-                    </h3>
-
-                    <p class="memory-description">
-                        Music, dance and the kind of evening
-                        everyone remembers.
-                    </p>
-
-                    <a
-                        href="https://photos.app.goo.gl/KGq1XNsEz2i3e9HW9"
-                        class="album-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <span class="icon">🪈</span>
-                        Open Album
+                <!-- Event 3 -->
+                <div class="event">
+                    <h3>Sangeet</h3>
+                    <a href="https://photos.app.goo.gl/KGq1XNsEz2i3e9HW9" class="album-link" target="_blank" rel="noopener noreferrer">
+                        <span class="icon">🪈</span> Open Album
                     </a>
-
                 </div>
 
-            </div>
-
-
-
-            <!-- WEDDING -->
-
-            <div class="big-moment">
-
-                <div class="big-moment-symbol">
-                    👰🤵
-                </div>
-
-                <h3>
-                    The Wedding
-                </h3>
-
-                <p>
-                    The day two lives became one
-                    and a beautiful family journey began.
-                </p>
-
-                <a
-                    href="https://photos.app.goo.gl/fPyjzYAWEAirxG2j8"
-                    class="album-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <span class="icon">💍</span>
-                    Open Wedding Album
-                </a>
-
-            </div>
-
-
-
-            <!-- RECEPTION -->
-
-            <div class="memory">
-
-                <div class="memory-card">
-
-                    <h3 class="memory-title">
-                        Reception 💃🕺
-                    </h3>
-
-                    <p class="memory-description">
-                        A celebration of love, family and
-                        a beautiful beginning.
-                    </p>
-
-                    <a
-                        href="https://photos.app.goo.gl/ebKgTBUmkVFhZhtK9"
-                        class="album-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <span class="icon">💃🕺</span>
-                        Open Album
+                <!-- Event 4 -->
+                <div class="event">
+                    <h3>Wedding</h3>
+                    <a href="https://photos.app.goo.gl/fPyjzYAWEAirxG2j8" class="album-link" target="_blank" rel="noopener noreferrer">
+                        <span class="icon">👰🤵</span> Open Album
                     </a>
-
                 </div>
 
-            </div>
-
-
-
-            <!-- WEDDING VIDEOS -->
-
-            <div class="big-moment">
-
-                <div class="big-moment-symbol">
-                    🎬
+                <!-- Event 5 -->
+                <div class="event">
+                    <h3>Reception</h3>
+                    <a href="https://photos.app.goo.gl/ebKgTBUmkVFhZhtK9" class="album-link" target="_blank" rel="noopener noreferrer">
+                        <span class="icon">💃🕺</span> Open Album
+                    </a>
                 </div>
-
-                <h3>
-                    Relive the Celebrations
-                </h3>
-
-                <p>
-                    Sangeet, Haldi and Wedding videos —
-                    the complete cinematic collection.
-                </p>
-
-                <a
-                    href="https://photos.app.goo.gl/Bqp8tMRMVxi5NUzr5"
-                    class="album-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <span class="icon">▶️</span>
-                    Watch Videos
-                </a>
-
             </div>
-
         </section>
 
+        <!-- ===== BIRTHDAY PHASE ===== -->
+        <section id="phase-birthday" class="phase">
+            <header>
+                <h1>Satvik's First Birthday</h1>
+                <p class="subtitle">One year of little giggles &amp; big love 🎈</p>
+            </header>
 
-
-        <!-- =====================================================
-             TRANSITION
-        ===================================================== -->
-
-        <div class="story-transition">
-
-            <span>♡</span>
-
-        </div>
-
-
-
-        <!-- =====================================================
-             2026
-        ===================================================== -->
-
-        <section class="year">
-
-            <div class="year-label">
-                A New Beginning
-            </div>
-
-            <h2 class="year-title">
-                2026
-            </h2>
-
-            <p class="year-story">
-                And then the family story became even more special.
-                A little new member arrived and brought
-                a whole new meaning to happiness.
-            </p>
-
-
-
-            <!-- BABY ARRIVAL -->
-
-            <div class="big-moment">
-
-                <div class="big-moment-symbol">
-                    👶
+            <div class="featured-section">
+                <div class="featured-card">
+                    <h3>Birthday Photos &amp; Video 🎂</h3>
+                    <p style="margin-top: -5px; margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted);">Relive every candle, cake smash &amp; giggle</p>
+                    <a href="https://photos.app.goo.gl/SJCS4D3gQS1LqqxH7" class="btn-primary" target="_blank" rel="noopener noreferrer">View Memories</a>
                 </div>
+            </div>
+        </section>
 
-                <h3>
-                    A Little One Arrived
-                </h3>
+        <!-- ===== COMING SOON PHASE ===== -->
+        <section id="phase-soon" class="phase">
+            <header>
+                <h1>What's Next</h1>
+                <p class="subtitle">More pages coming to the scrapbook 📖</p>
+            </header>
 
-                <p>
-                    Tiny hands, little smiles and
-                    a whole new reason for everyone to smile.
+            <div class="soon-card">
+                <span class="soon-icon">📌</span>
+                <h3>A new page is waiting</h3>
+                <p>Every new celebration gets pinned right here, alongside the wedding and birthday pages. Come back after the next big day!</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>Made with ❤️ to preserve memories</p>
+        </footer>
+    </div>
+
+    <script>
+        (function () {
+            var nodes = document.querySelectorAll('.year-node');
+            var phases = document.querySelectorAll('.phase');
+
+            function activate(phaseName) {
+                nodes.forEach(function (n) {
+                    n.classList.toggle('active', n.getAttribute('data-phase') === phaseName);
+                });
+                phases.forEach(function (p) {
+                    p.classList.toggle('active', p.id === 'phase-' + phaseName);
+                });
+                document.body.className = 'phase-' + phaseName;
+            }
+
+            nodes.forEach(function (node) {
+                node.addEventListener('click', function () {
+                    activate(node.getAttribute('data-phase'));
+                });
+            });
+
+            activate('wedding');
+        })();
+    </script>
+</body>
+</html>
