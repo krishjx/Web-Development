@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Complex Form</title>
+    </head>
+    <form>
+        <fieldset>
+        <legend>Personal Information</legend>
+        <label for="name">Name:</label>
+        <input type="text" id="name">
+        <label for="email">Email:</label>
+        <input type="text" id="email">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob">
+        <label>Gender:</label>
+        <label for="male">Male</label>
+        <input type="radio" id="male" name="gender">
+        <label for="female">Female</label>
+        <input type="radio" id="female" name="gender">
+        <label for="country">Country</label>
+        <select id="country">
+            <option value="US">United States</option>
+            <option value="IN">India</option>
+            <option value="RU">Russia</option>
+        </select>
+    </fieldset>
+    <fieldset>
+        <legend>
+            <label for="st">Address Street</label>
+            <input type="text" id="st">
+            <label for="city">City</label>
+            <input type="text" id="city">
+            <label for="state">State</label>
+            <input type="text" id="state">
+            <label for="zipcode">Zip Code</label>
+            <input type="number" id="zipcode">
+        </legend>
+    </fieldset>
+    <fieldset>
+        <legend>Other Information</legend>
+        <label>Comments:</label>
+        <textarea cols="25" rows="5"></textarea>
+        <label id="t&c">I agree to the terms of service</label>
+        <input type="checkbox" id="t&c">
+    </fieldset>
+    <button>Submit</button>
+    </form>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Job Application</title>
+   </head>
+    <body>
+        <h2>Job Application</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name">
+            <br/><br/>
+            <label for="email">Email:</label>
+            <input type="text" id="email">
+            <br/><br/>
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone">
+            <br/><br/>
+            <label for="resume">Resume:</label>
+            <input type="file" id="resume">
+            <br/><br/>
+            <label for="exp">Experience(years):</label>
+            <input  type="number" min="0" max="50">
+            <br/><br/>
+            <fieldset>
+                <legend>Skills</legend>
+                    <option for="checkbox1">HTML</option>
+                    <input type="checkbox" id="checkbox1">
+                    <option for="checkbox2">CSS</option>
+                    <input type="checkbox" id="checkbox2">
+                    <option for="checkbox3">JavaScript</option>
+                    <input type="checkbox" id="checkbox3">
+            </fieldset>
+            <br/><br/>
+            <label for="edu">Higher Education:</label>
+            <select id="edu">
+                <option value="10" >Class 10</option>
+                <option value="12" >Class 12</option>
+            </select>
+            <br/><br/>
+            <label >Availability:</label>
+            <br/>
+            <label for="ft">Full Time</label>
+            <input type="radio" id="ft" name="job">
+            <br/>
+            <label for="pt">Part Time</label>
+            <input type="radio" id="pt" name="job">
+            <br/><br/>
+            <label>Additional Comments:</label>
+            <textarea rows="2" cols="25"></textarea>
+            <input type="submit" value="Submit">
+
+        </form>
+    </body>
+</html>
