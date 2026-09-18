@@ -4,7 +4,7 @@
         <title>Registration Form</title>
 </head>
 <body>
-     <table border="1" cellspacing="0" width="850">
+     <table border="1" cellspacing="0" width="850" height="600">
      <tr bgcolor="#8E7AB5" align="center">
          <td ><a href="https://recbanda.ac.in"><img src=https://recbanda.ac.in/public/uploads/2016/11/about_logo.png alt="College Logo" width="100" height="100">
          </a></td>
@@ -16,11 +16,13 @@
          <td ><a href="registration.html">Registration</a></td>
          <td ><a href="catalogue.html">Catalogue</a></td>
          <td ><a href="cart.html">Cart</a></td>
-     </tr><tr align="center">
-        <td colspan="5">
-    <form>
-
-              <label for="name">Name:</label>
+     </tr><tr align="center" >
+     <td colspan="5" style="background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://recbanda.ac.in/public/uploads/2016/11/about_logo.png'); background-repeat: no-repeat; background-position: center;"">
+     <h1>Registration Form</h1>
+     <fieldset style="width: fit-content; margin:0 auto;">  
+    <form>        
+        <br/>
+        <label for="name">Name:</label>
         <input type="text" id="name">
         <br/><br/>
         <label for="email">Email:</label>
@@ -35,32 +37,26 @@
         <label>Gender:</label>
         <label >Male<input type="radio"  name="gender"></label>
         <label>Female <input type="radio" name="gender"></label>
-        ,<br/><br/>
+        <br/><br/>
         <label>Language:</label>
         <label for="hindi">Hindi</label>
         <input type="checkbox" id="hindi">
         <label for="eng">English</label>
         <input type="checkbox" id="eng">
-        
         <label for="tm">Tamil</label>
-<input type="checkbox" id="ta">
+        <input type="checkbox" id="ta">
         <br/><br/>
         <label>Address:</label>
         <textarea rows="2" cols="25"></textarea>
         <br/><br/>
+        <label for="pass">Password:</label>
+        <input type="password" id="pass">
+        <br/><br/>
         <button>Submit</button>
-
-
-
-
-
-
-
-
- </form></td>
-</tr>
-   
+</form>
+</fieldset>
+<br/><br/><br/>
+</td></tr>   
 </table>    
 </body>
-
 </html>
